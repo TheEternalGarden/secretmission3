@@ -30,7 +30,7 @@ export default function Products() {
               </video>
             </div>
             <h1 className="text-xl font-bold mt-2">GDNR 1</h1>
-            <p className="text-gray-600">The GDNR 1 is a visionary sneaker blending futuristic design with classic comfort. Limited edition drop.</p>
+            <p className="text-gray-600">GDNR 1 is Eternal Garden's introduction to streetwear. The development of the GDNR 1 bridges AI-generated digital assets into the real world.</p>
             <button className="mt-auto w-full bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors">
               Coming Soon
             </button>
