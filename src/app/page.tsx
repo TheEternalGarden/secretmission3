@@ -7,9 +7,9 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-white">
-      {/* Hamburger Icon */}
+      {/* Hamburger Icon - Moved to right */}
       <button
-        className="absolute top-6 left-6 z-20 flex flex-col gap-1 w-8 h-8 justify-center items-center"
+        className="absolute top-6 right-6 z-20 flex flex-col gap-1 w-8 h-8 justify-center items-center"
         aria-label="Open menu"
         onClick={() => setMenuOpen(true)}
       >
@@ -23,10 +23,10 @@ export default function Home() {
         YEEZY COMING SOON
       </span>
 
-      {/* Drawer Menu */}
+      {/* Drawer Menu - Now slides from right */}
       {menuOpen && (
-        <div className="fixed inset-0 bg-black/40 z-30 flex">
-          <nav className="bg-white w-64 h-full shadow-lg p-8 flex flex-col gap-6 animate-slide-in-left">
+        <div className="fixed inset-0 bg-black/40 z-30 flex justify-end">
+          <nav className="bg-white w-64 h-full shadow-lg p-8 flex flex-col gap-6 animate-slide-in-right">
             <button
               className="self-end mb-8 text-2xl font-bold text-black"
               aria-label="Close menu"
@@ -46,12 +46,12 @@ export default function Home() {
         </div>
       )}
       <style jsx global>{`
-        @keyframes slide-in-left {
-          from { transform: translateX(-100%); }
+        @keyframes slide-in-right {
+          from { transform: translateX(100%); }
           to { transform: translateX(0); }
         }
-        .animate-slide-in-left {
-          animation: slide-in-left 0.2s cubic-bezier(0.4,0,0.2,1);
+        .animate-slide-in-right {
+          animation: slide-in-right 0.2s cubic-bezier(0.4,0,0.2,1);
         }
       `}</style>
     </div>
