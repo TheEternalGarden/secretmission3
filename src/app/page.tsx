@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,18 +26,15 @@ export default function Home() {
     setSecondLine("");
     setFirstDone(false);
     let i = 0;
-    function typeFirst() {
-      if (i < firstText.length) {
-        setFirstLine((prev) => prev + firstText[i]);
-        i++;
-        setTimeout(typeFirst, typingSpeed);
-      } else {
+    const interval = setInterval(() => {
+      setFirstLine(firstText.slice(0, i + 1));
+      i++;
+      if (i === firstText.length) {
+        clearInterval(interval);
         setFirstDone(true);
       }
-    }
-    typeFirst();
-    // Cleanup
-    return () => {};
+    }, typingSpeed);
+    return () => clearInterval(interval);
     // eslint-disable-next-line
   }, []);
 
@@ -45,16 +42,14 @@ export default function Home() {
   useEffect(() => {
     if (!firstDone) return;
     let j = 0;
-    function typeSecond() {
-      if (j < secondText.length) {
-        setSecondLine((prev) => prev + secondText[j]);
-        j++;
-        setTimeout(typeSecond, typingSpeed);
+    const interval = setInterval(() => {
+      setSecondLine(secondText.slice(0, j + 1));
+      j++;
+      if (j === secondText.length) {
+        clearInterval(interval);
       }
-    }
-    typeSecond();
-    // Cleanup
-    return () => {};
+    }, typingSpeed);
+    return () => clearInterval(interval);
     // eslint-disable-next-line
   }, [firstDone]);
 
@@ -75,11 +70,11 @@ export default function Home() {
       <div className="flex flex-col items-center">
         <span className="text-center text-sm text-black font-light tracking-wide select-none min-h-[1.5em]">
           {firstLine}
-          {(!firstDone && showCursor) ? <span className="animate-blink">–</span> : null}
+          {(!firstDone || (firstDone && secondLine.length === 0)) && showCursor && <span className="animate-blink">–</span>}
         </span>
         <span className="text-center text-xs text-gray-400 font-light mt-2 select-none min-h-[1.5em]">
           {secondLine}
-          {(firstDone && secondLine.length < secondText.length && showCursor) ? <span className="animate-blink">–</span> : null}
+          {firstDone && showCursor && <span className="animate-blink">–</span>}
         </span>
       </div>
 
