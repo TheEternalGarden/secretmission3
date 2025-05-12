@@ -9,34 +9,31 @@ export default function Products() {
         ← Back
       </Link>
 
-      {/* Product display */}
-      <div className="max-w-4xl mx-auto">
+      {/* Products display */}
+      <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Product Image */}
-          <div className="bg-gray-100 aspect-square flex items-center justify-center">
-            <div className="text-gray-400 text-sm">YEEZY BOOST 350 V2</div>
+          {/* Product 1: GDNR 1 */}
+          <div className="flex flex-col gap-4 border rounded-lg p-6 shadow-sm">
+            <div className="bg-gray-100 aspect-square flex items-center justify-center rounded-md">
+              <div className="text-gray-400 text-sm">GDNR 1 IMAGE</div>
+            </div>
+            <h1 className="text-xl font-bold mt-2">GDNR 1</h1>
+            <p className="text-gray-600">The GDNR 1 is a visionary sneaker blending futuristic design with classic comfort. Limited edition drop.</p>
+            <button className="mt-auto w-full bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors">
+              Coming Soon
+            </button>
           </div>
 
-          {/* Product Info */}
-          <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold">YEEZY BOOST 350 V2</h1>
-            <p className="text-gray-600">The YEEZY BOOST 350 V2 features an upper composed of re-engineered Primeknit. The post-dyed monofilament side stripe is woven into the upper. Reflective threads are woven into the laces. The midsole utilizes adidas' innovative BOOST technology.</p>
-            
-            <div className="mt-4">
-              <h2 className="text-lg font-semibold mb-2">Details</h2>
-              <ul className="list-disc list-inside text-gray-600 space-y-1">
-                <li>Primeknit upper</li>
-                <li>BOOST midsole</li>
-                <li>Rubber outsole</li>
-                <li>Reflective laces</li>
-              </ul>
+          {/* Product 2: ETERNAL GARDEN // ZERO CAPSULE */}
+          <div className="flex flex-col gap-4 border rounded-lg p-6 shadow-sm">
+            <div className="bg-gray-100 aspect-square flex items-center justify-center rounded-md">
+              <div className="text-gray-400 text-sm text-center">ETERNAL GARDEN<br />// ZERO CAPSULE IMAGE</div>
             </div>
-
-            <div className="mt-8">
-              <button className="w-full bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors">
-                Coming Soon
-              </button>
-            </div>
+            <h1 className="text-xl font-bold mt-2">ETERNAL GARDEN // ZERO CAPSULE</h1>
+            <p className="text-gray-600">The ZERO CAPSULE collection from ETERNAL GARDEN features minimal, timeless pieces inspired by nature and urban life.</p>
+            <button className="mt-auto w-full bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors">
+              Coming Soon
+            </button>
           </div>
         </div>
       </div>
