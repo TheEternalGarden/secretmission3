@@ -26,8 +26,15 @@ export default function Products() {
 
           {/* Product 2: ETERNAL GARDEN // ZERO CAPSULE */}
           <div className="flex flex-col gap-4 border rounded-lg p-6 shadow-sm">
-            <div className="bg-gray-100 aspect-square flex items-center justify-center rounded-md">
-              <div className="text-gray-400 text-sm text-center">ETERNAL GARDEN<br />// ZERO CAPSULE IMAGE</div>
+            <div className="bg-gray-100 aspect-square flex items-center justify-center rounded-md overflow-hidden">
+              <video
+                src="/codex.mp4"
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
             </div>
             <h1 className="text-xl font-bold mt-2">ETERNAL GARDEN // ZERO CAPSULE</h1>
             <p className="text-gray-600">The ZERO CAPSULE collection from ETERNAL GARDEN features minimal, timeless pieces inspired by nature and urban life.</p>
