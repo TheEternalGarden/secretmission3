@@ -14,8 +14,20 @@ export default function Products() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Product 1: GDNR 1 */}
           <div className="flex flex-col gap-4 border rounded-lg p-6 shadow-sm">
-            <div className="bg-gray-100 aspect-square flex items-center justify-center rounded-md">
-              <div className="text-gray-400 text-sm">GDNR 1 IMAGE</div>
+            <div className="bg-gray-100 aspect-square flex items-center justify-center rounded-md overflow-hidden">
+              <video
+                src="/gdnr1.mp4"
+                className="w-full h-full"
+                autoPlay
+                loop
+                muted
+                playsInline
+                width={400}
+                height={400}
+                style={{ background: "#f3f4f6", objectFit: "cover" }}
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
             <h1 className="text-xl font-bold mt-2">GDNR 1</h1>
             <p className="text-gray-600">The GDNR 1 is a visionary sneaker blending futuristic design with classic comfort. Limited edition drop.</p>
