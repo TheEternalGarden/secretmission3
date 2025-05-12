@@ -2,33 +2,42 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-function useTypewriter(text: string, speed = 50, onDone?: () => void, start = true) {
-  const [displayed, setDisplayed] = useState("");
-  useEffect(() => {
-    if (!start) {
-      setDisplayed("");
-      return;
-    }
-    let i = 0;
-    setDisplayed("");
-    const interval = setInterval(() => {
-      setDisplayed((prev) => prev + text[i]);
-      i++;
-      if (i >= text.length) {
-        clearInterval(interval);
-        if (onDone) onDone();
-      }
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed, onDone, start]);
-  return displayed;
-}
-
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showSecond, setShowSecond] = useState(false);
-  const firstLine = useTypewriter("YEEZY COMING SOON", 50, () => setShowSecond(true), true);
-  const secondLine = useTypewriter("BY ETERNAL LABS", 50, undefined, showSecond);
+  const [firstLine, setFirstLine] = useState("");
+  const [secondLine, setSecondLine] = useState("");
+  const firstText = "YEEZY COMING SOON";
+  const secondText = "BY ETERNAL LABS";
+
+  useEffect(() => {
+    let firstTimeout: NodeJS.Timeout;
+    let secondTimeout: NodeJS.Timeout;
+    let i = 0;
+    let j = 0;
+    setFirstLine("");
+    setSecondLine("");
+    function typeFirst() {
+      if (i < firstText.length) {
+        setFirstLine((prev) => prev + firstText[i]);
+        i++;
+        firstTimeout = setTimeout(typeFirst, 50);
+      } else {
+        typeSecond();
+      }
+    }
+    function typeSecond() {
+      if (j < secondText.length) {
+        setSecondLine((prev) => prev + secondText[j]);
+        j++;
+        secondTimeout = setTimeout(typeSecond, 50);
+      }
+    }
+    typeFirst();
+    return () => {
+      clearTimeout(firstTimeout);
+      clearTimeout(secondTimeout);
+    };
+  }, []);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-white">
@@ -46,10 +55,10 @@ export default function Home() {
       {/* Centered Text with Typewriter Effect */}
       <div className="flex flex-col items-center">
         <span className="text-center text-sm text-black font-light tracking-wide select-none min-h-[1.5em]">
-          {firstLine || "YEEZY COMING SOON"}
+          {firstLine || firstText}
         </span>
         <span className="text-center text-xs text-gray-400 font-light mt-2 select-none min-h-[1.5em]">
-          {showSecond ? (secondLine || "BY ETERNAL LABS") : ""}
+          {secondLine || (firstLine.length === firstText.length ? secondText : "")}
         </span>
       </div>
 
