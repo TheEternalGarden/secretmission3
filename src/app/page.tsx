@@ -8,7 +8,7 @@ export default function Home() {
   const [secondLine, setSecondLine] = useState("");
   const [firstDone, setFirstDone] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
-  const firstText = "YEEZY COMING SOON";
+  const firstText = "YEEZY MARKEPLACE";
   const secondText = "BY ETERNAL LABS";
   const typingSpeed = 100;
 
