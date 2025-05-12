@@ -19,9 +19,14 @@ export default function Home() {
       </button>
 
       {/* Centered Text */}
-      <span className="text-center text-sm text-black font-light tracking-wide select-none">
-        YEEZY COMING SOON
-      </span>
+      <div className="flex flex-col items-center">
+        <span className="text-center text-sm text-black font-light tracking-wide select-none">
+          YEEZY COMING SOON
+        </span>
+        <span className="text-center text-xs text-gray-400 font-light mt-2 select-none">
+          BY ETERNAL LABS
+        </span>
+      </div>
 
       {/* Drawer Menu - Now slides from right */}
       {menuOpen && (
