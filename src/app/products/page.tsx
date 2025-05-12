@@ -43,9 +43,14 @@ export default function Products() {
             </div>
             <h1 className="text-xl font-bold mt-2">ETERNAL GARDEN // ZERO CAPSULE</h1>
             <p className="text-gray-600">The ZERO CAPSULE collection from ETERNAL GARDEN features minimal, timeless pieces inspired by nature and urban life.</p>
-            <button className="mt-auto w-full bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors">
-              Coming Soon
-            </button>
+            <a
+              href="https://www.crowdmuse.xyz/collect/eternal-garden-zero"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto w-full bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-colors text-center block"
+            >
+              Buy Now
+            </a>
           </div>
         </div>
       </div>
