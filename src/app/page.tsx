@@ -70,11 +70,11 @@ export default function Home() {
       <div className="flex flex-col items-center">
         <span className="text-center text-sm text-black font-light tracking-wide select-none min-h-[1.5em]">
           {firstLine}
-          {(!firstDone || (firstDone && secondLine.length === 0)) && showCursor && <span className="animate-blink">–</span>}
+          {(!firstDone || (firstDone && secondLine.length === 0)) && showCursor && <span className="animate-blink">|</span>}
         </span>
         <span className="text-center text-xs text-gray-400 font-light mt-2 select-none min-h-[1.5em]">
           {secondLine}
-          {firstDone && showCursor && <span className="animate-blink">–</span>}
+          {firstDone && showCursor && <span className="animate-blink">|</span>}
         </span>
       </div>
 
