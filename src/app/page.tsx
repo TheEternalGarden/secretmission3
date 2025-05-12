@@ -6,38 +6,57 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [firstLine, setFirstLine] = useState("");
   const [secondLine, setSecondLine] = useState("");
+  const [firstDone, setFirstDone] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
   const firstText = "YEEZY COMING SOON";
   const secondText = "BY ETERNAL LABS";
+  const typingSpeed = 100;
 
+  // Blinking cursor effect
   useEffect(() => {
-    let firstTimeout: NodeJS.Timeout;
-    let secondTimeout: NodeJS.Timeout;
-    let i = 0;
-    let j = 0;
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 500);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  // Typewriter for first line
+  useEffect(() => {
     setFirstLine("");
     setSecondLine("");
+    setFirstDone(false);
+    let i = 0;
     function typeFirst() {
       if (i < firstText.length) {
         setFirstLine((prev) => prev + firstText[i]);
         i++;
-        firstTimeout = setTimeout(typeFirst, 50);
+        setTimeout(typeFirst, typingSpeed);
       } else {
-        typeSecond();
+        setFirstDone(true);
       }
     }
+    typeFirst();
+    // Cleanup
+    return () => {};
+    // eslint-disable-next-line
+  }, []);
+
+  // Typewriter for second line
+  useEffect(() => {
+    if (!firstDone) return;
+    let j = 0;
     function typeSecond() {
       if (j < secondText.length) {
         setSecondLine((prev) => prev + secondText[j]);
         j++;
-        secondTimeout = setTimeout(typeSecond, 50);
+        setTimeout(typeSecond, typingSpeed);
       }
     }
-    typeFirst();
-    return () => {
-      clearTimeout(firstTimeout);
-      clearTimeout(secondTimeout);
-    };
-  }, []);
+    typeSecond();
+    // Cleanup
+    return () => {};
+    // eslint-disable-next-line
+  }, [firstDone]);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-white">
@@ -55,10 +74,12 @@ export default function Home() {
       {/* Centered Text with Typewriter Effect */}
       <div className="flex flex-col items-center">
         <span className="text-center text-sm text-black font-light tracking-wide select-none min-h-[1.5em]">
-          {firstLine || firstText}
+          {firstLine}
+          {(!firstDone && showCursor) ? <span className="animate-blink">–</span> : null}
         </span>
         <span className="text-center text-xs text-gray-400 font-light mt-2 select-none min-h-[1.5em]">
-          {secondLine || (firstLine.length === firstText.length ? secondText : "")}
+          {secondLine}
+          {(firstDone && secondLine.length < secondText.length && showCursor) ? <span className="animate-blink">–</span> : null}
         </span>
       </div>
 
@@ -91,6 +112,13 @@ export default function Home() {
         }
         .animate-slide-in-right {
           animation: slide-in-right 0.2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .animate-blink {
+          animation: blink 1s steps(1) infinite;
+        }
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
         }
       `}</style>
     </div>
