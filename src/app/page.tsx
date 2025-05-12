@@ -1,9 +1,30 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+function useTypewriter(text: string, speed = 50, onDone?: () => void) {
+  const [displayed, setDisplayed] = useState("");
+  useEffect(() => {
+    let i = 0;
+    setDisplayed("");
+    const interval = setInterval(() => {
+      setDisplayed((prev) => prev + text[i]);
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        if (onDone) onDone();
+      }
+    }, speed);
+    return () => clearInterval(interval);
+  }, [text, speed, onDone]);
+  return displayed;
+}
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showSecond, setShowSecond] = useState(false);
+  const firstLine = useTypewriter("YEEZY COMING SOON", 50, () => setShowSecond(true));
+  const secondLine = useTypewriter("BY ETERNAL LABS", 50);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-white">
@@ -18,13 +39,13 @@ export default function Home() {
         <span className="block w-7 h-0.5 bg-black rounded"></span>
       </button>
 
-      {/* Centered Text */}
+      {/* Centered Text with Typewriter Effect */}
       <div className="flex flex-col items-center">
-        <span className="text-center text-sm text-black font-light tracking-wide select-none">
-          YEEZY COMING SOON
+        <span className="text-center text-sm text-black font-light tracking-wide select-none min-h-[1.5em]">
+          {firstLine}
         </span>
-        <span className="text-center text-xs text-gray-400 font-light mt-2 select-none">
-          BY ETERNAL LABS
+        <span className="text-center text-xs text-gray-400 font-light mt-2 select-none min-h-[1.5em]">
+          {showSecond ? secondLine : ""}
         </span>
       </div>
 
