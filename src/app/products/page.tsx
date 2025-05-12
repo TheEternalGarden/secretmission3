@@ -54,7 +54,7 @@ export default function Products() {
               </video>
             </div>
             <h1 className="text-xl font-bold mt-2">ETERNAL GARDEN // ZERO CAPSULE</h1>
-            <p className="text-gray-600">ETERNAL GARDEN // ZERO blends music, literature, and streetwear to create a hybrid experience: THE CAPSULE. An in depth audio-visual introduction to the story of Eternal Garden, the ZERO capsule consists of 3 elements that collectors will unlock: THE CODEX [PHYSICAL + DIGITAL], THE SOUNDTRACK and the GDNR 1 BLUEPRINT [DIGITAL].</p>
+            <p className="text-gray-600">ETERNAL GARDEN // ZERO blends music, literature, and streetwear to create a hybrid experience: THE CAPSULE.</p>
             <a
               href="https://www.crowdmuse.xyz/collect/eternal-garden-zero"
               target="_blank"
